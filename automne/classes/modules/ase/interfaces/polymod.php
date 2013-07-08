@@ -10,7 +10,7 @@
 // | LICENSE-GPL, and is available at through the world-wide-web at       |
 // | http://www.gnu.org/copyleft/gpl.html.                                |
 // +----------------------------------------------------------------------+
-// | Author: Sébastien Pauchet <sebastien.pauchet@ws-interactive.fr>      |
+// | Author: Sï¿½bastien Pauchet <sebastien.pauchet@ws-interactive.fr>      |
 // +----------------------------------------------------------------------+
 //
 // $Id: polymod.php,v 1.13 2010/01/12 09:14:37 sebastien Exp $
@@ -22,7 +22,7 @@
   *
   * @package CMS
   * @subpackage module
-  * @author Sébastien Pauchet <sebastien.pauchet@ws-interactive.fr>
+  * @author Sï¿½bastien Pauchet <sebastien.pauchet@ws-interactive.fr>
   */
 
 class CMS_polymod_ase extends CMS_ase_interface {
@@ -452,7 +452,7 @@ class CMS_polymod_ase extends CMS_ase_interface {
 	  * @access public
 	  */
 	function getAvailableMatchValues($matchInfo) {
-		return array('HTMLTitle', 'item', 'description', 'pubDate', 'url');
+		return array('HTMLTitle', 'pageTitle', 'item', 'description', 'pubDate', 'url');
 	}
 
 	/**
@@ -496,6 +496,11 @@ class CMS_polymod_ase extends CMS_ase_interface {
 				$title = $this->_results[$itemId]->getLabel();
 				$url = $this->getMatchValue($matchInfo, 'url', $parameters);
 				return '<a href="'.$url.'" title="'.htmlspecialchars($title).'">'.$this->strChop($title, 120).'</a> '.$iconHTML;
+			break;
+			case 'pageTitle':
+				//title
+				$title = $this->_results[$itemId]->getLabel();
+				return $this->strChop($title, 120);
 			break;
 			case 'itemID':
 				return $this->_results[$itemId]->getID();
